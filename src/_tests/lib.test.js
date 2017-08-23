@@ -1,28 +1,11 @@
-import {
-    copyAll,
+const {
     getPkg,
     getPackageJson,
     getAssetsManifest,
-    copy
-} from '../index';
-
-describe('copyAll', () => {
-
-    it('rejects if bad glob provided', () => {
-
-        // Arrange
-        const inputGlob = null;
-        const inputDistDir = 'dist/';
-
-        // Act
-        const promise = copyAll(inputGlob, inputDistDir);
-
-        // Assert
-        expect(promise).rejects.toBeDefined();
-
-    });
-
-});
+    makeDirectories,
+    copyFile,
+    copyOnePackage
+} = require('../lib');
 
 describe('getPkg', () => {
 
@@ -116,9 +99,9 @@ describe('getAssetsManifest', () => {
 
         // Arrange
         const input = `{
-            name: 'test',
-            assets: {
-                data: 'data'
+            "name": "test",
+            "assets": {
+                "data": "data"
             }
         }`;
         const expected = {
@@ -148,9 +131,43 @@ describe('getAssetsManifest', () => {
 
 });
 
-describe('copy', () => {
+describe('makeDirectories', () => {
 
-    it('rejects if package has no assets', () => {
+    it('rejects bad input', () => {
+        
+        // Arrange
+        const input = null;
+
+        // Act
+        const promise = makeDirectories(input);
+
+        // Assert
+        expect(promise).rejects.toBeDefined();
+
+    });
+
+});
+
+describe('copyFile', () => {
+    
+    it('rejects bad input', () => {
+        
+        // Arrange
+        const input = null;
+
+        // Act
+        const promise = copyFile(input);
+
+        // Assert
+        expect(promise).rejects.toBeDefined();
+
+    });
+
+});
+
+describe('copyOnePackage', () => {
+
+    it('resolves if package has no assets', () => {
 
         // Arrange
         const input = {
@@ -160,10 +177,10 @@ describe('copy', () => {
         };
 
         // Act
-        const promise = copy(input);
+        const promise = copyOnePackage(input);
 
         // Assert
-        expect(promise).rejects.toBeDefined();
+        expect(promise).resolves;
 
     });
 
