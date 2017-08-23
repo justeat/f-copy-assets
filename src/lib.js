@@ -102,7 +102,7 @@ const copyFile = asset => new Promise((resolve, reject) => {
  */
 const copyOnePackage = pkg => new Promise((resolve, reject) => {
 
-    if (!pkg.assets) resolve(`No assets found for package ${pkg}`);
+    if (!pkg.assets) resolve(`No assets found for package ${pkg.name}`);
 
     const assetsRoot = path.join(pkg.filepath, pkg.assets.root); // e.g. node_modules/@justeat/fozzie/dist
     const assetsGlob = path.join(assetsRoot, pkg.assets.glob); // e.g. node_modules/@justeat/fozzie/dist/img/**/*.svg

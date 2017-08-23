@@ -134,7 +134,7 @@ describe('getAssetsManifest', () => {
 describe('makeDirectories', () => {
 
     it('rejects bad input', () => {
-        
+
         // Arrange
         const input = null;
 
@@ -149,9 +149,9 @@ describe('makeDirectories', () => {
 });
 
 describe('copyFile', () => {
-    
+
     it('rejects bad input', () => {
-        
+
         // Arrange
         const input = null;
 
@@ -180,7 +180,7 @@ describe('copyOnePackage', () => {
         const promise = copyOnePackage(input);
 
         // Assert
-        expect(promise).resolves;
+        expect(promise).resolves.toBeDefined();
 
     });
 
