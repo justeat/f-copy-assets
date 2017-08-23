@@ -11,7 +11,9 @@ const config = require('./config');
  */
 const copyAssets = options => new Promise((resolve, reject) => {
 
-    config.update(options);
+    if (options) {
+        config.update(options);
+    }
 
     if (typeof config.dest !== 'string') {
         reject(new Error('Provided destination directory must be a string'));
