@@ -1,0 +1,6 @@
+{
+    "extends": "@justeat/eslint-config-fozzie",
+    "rules": {
+        "no-console": "off"
+    }
+}
