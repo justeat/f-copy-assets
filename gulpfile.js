@@ -3,8 +3,12 @@ const { build } = require('@justeat/gulp-build-fozzie');
 
 build(gulp, {
     js: {
-        jsDir: '',
-        distFile: 'index.js',
-        applyRevision: false
+        files: {
+            main: {
+                distFile: 'index.js',
+                applyRevision: false
+            }
+        },
+        jsDir: ''
     }
 });
