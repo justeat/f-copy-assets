@@ -3,11 +3,10 @@
   "description": "Copies assets from node modules to a specified destination directory",
   "author": "Howard Wallis <howard.wallis@just-eat.com>",
   "version": "0.2.0",
-  "main": "./dist/index.min.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "gulp scripts:test",
-    "lint": "gulp scripts:lint",
-    "prepublish": "gulp scripts"
+    "lint": "gulp scripts:lint"
   },
   "license": "Apache-2.0",
   "dependencies": {
