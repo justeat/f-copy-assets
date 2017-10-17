@@ -1,16 +1,16 @@
 const {
-    getPkg,
+    getPackage,
     getPackageJson,
     getAssetsManifest,
     makeDirectories,
     copyFile,
     copyOnePackage
-} = require('../lib');
+} = require('../src/lib');
 
-describe('getPkg', () => {
+
+describe('getPackage', () => {
 
     it('can find module name', () => {
-
         // Arrange
         const input = 'node_modules/@justeat/fozzie/';
         const expected = {
@@ -20,37 +20,32 @@ describe('getPkg', () => {
         };
 
         // Act
-        const pkg = getPkg(input);
+        const pkg = getPackage(input);
 
         // Assert
         expect(pkg).resolves.toEqual(expected);
-
     });
 
     it('rejects an org with a reason', () => {
-
         // Arrange
         const input = 'node_modules/@justeat/';
 
         // Act
-        const pkg = getPkg(input);
+        const pkg = getPackage(input);
 
         // Assert
         expect(pkg).rejects.toBeDefined();
-
     });
 
     it('rejects a malformed path with a reason', () => {
-
         // Arrange
         const input = 'node_modules@justeatfozzie';
 
         // Act
-        const pkg = getPkg(input);
+        const pkg = getPackage(input);
 
         // Assert
         expect(pkg).rejects.toBeDefined();
-
     });
 
 });
@@ -58,14 +53,9 @@ describe('getPkg', () => {
 describe('getPackageJson', () => {
 
     it('returns a package.json with the correct name', () => {
-
         // Arrange
-        const input = { // is a mock package possible rather than a real one?
-            filepath: 'node_modules/gulp/',
-            name: 'gulp',
-            assets: null
-        };
-        const expected = 'gulp';
+        const input = { filepath: '' };
+        const expected = '@justeat/f-copy-assets';
 
         // Act
         const packageName = getPackageJson(input)
@@ -73,11 +63,9 @@ describe('getPackageJson', () => {
 
         // Assert
         expect(packageName).resolves.toEqual(expected);
-
     });
 
     it('rejects bad input', () => {
-
         // Arrange
         const input = {
             blah: 'blah'
@@ -88,7 +76,6 @@ describe('getPackageJson', () => {
 
         // Assert
         expect(packageName).rejects.toBeDefined();
-
     });
 
 });
@@ -96,7 +83,6 @@ describe('getPackageJson', () => {
 describe('getAssetsManifest', () => {
 
     it('parses JSON and retrieves the assets object', () => {
-
         // Arrange
         const input = `{
             "name": "test",
@@ -113,11 +99,9 @@ describe('getAssetsManifest', () => {
 
         // Assert
         expect(assetsManifest).resolves.toEqual(expected);
-
     });
 
     it('rejects bad input', () => {
-
         // Arrange
         const input = 'i aint json';
 
@@ -126,7 +110,6 @@ describe('getAssetsManifest', () => {
 
         // Assert
         expect(assetsManifest).rejects.toBeDefined();
-
     });
 
 });
@@ -134,7 +117,6 @@ describe('getAssetsManifest', () => {
 describe('makeDirectories', () => {
 
     it('rejects bad input', () => {
-
         // Arrange
         const input = null;
 
@@ -143,7 +125,6 @@ describe('makeDirectories', () => {
 
         // Assert
         expect(promise).rejects.toBeDefined();
-
     });
 
 });
@@ -151,7 +132,6 @@ describe('makeDirectories', () => {
 describe('copyFile', () => {
 
     it('rejects bad input', () => {
-
         // Arrange
         const input = null;
 
@@ -160,7 +140,6 @@ describe('copyFile', () => {
 
         // Assert
         expect(promise).rejects.toBeDefined();
-
     });
 
 });
@@ -168,7 +147,6 @@ describe('copyFile', () => {
 describe('copyOnePackage', () => {
 
     it('resolves if package has no assets', () => {
-
         // Arrange
         const input = {
             filepath: 'something',
@@ -181,7 +159,6 @@ describe('copyOnePackage', () => {
 
         // Assert
         expect(promise).resolves.toBeDefined();
-
     });
 
 });
