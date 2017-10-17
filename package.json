@@ -1,33 +1,44 @@
 {
   "name": "@justeat/f-copy-assets",
   "description": "Copies assets from node modules to a specified destination directory",
-  "author": "Howard Wallis <howard.wallis@just-eat.com>",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "src/index.js",
-  "scripts": {
-    "test": "gulp scripts:test",
-    "lint": "gulp scripts:lint"
+  "files": [
+    "src"
+  ],
+  "homepage": "https://github.com/justeat/f-copy-assets",
+  "contributors": [
+    "Github contributors <https://github.com/justeat/f-copy-assets/graphs/contributors>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:justeat/f-copy-assets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/justeat/f-copy-assets/issues"
   },
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "dependencies": {
-    "@justeat/gulp-build-fozzie": "^5.4.0",
-    "babel-preset-es2015": "^6.24.1",
-    "fs": "^0.0.1-security",
     "glob": "^7.1.2",
     "mkdirp": "^0.5.1"
   },
-  "stylelint": {
-    "extends": "@justeat/stylelint-config-fozzie"
+  "devDependencies": {
+    "@justeat/eslint-config-fozzie": "^1.2.0",
+    "concurrently": "^3.5.0",
+    "eslint": "^4.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "jest": "^21.2.1"
   },
-  "browserslist": [
-    "> 5%",
-    "last 2 versions",
-    "ie > 8",
-    "Safari >= 8"
-  ],
-  "jest": {
-    "roots": [
-      "src/"
-    ]
-  }
+  "scripts": {
+    "prepare": "concurrently -n \"lint,test\" -c \"blue,green\" --kill-others-on-fail \"yarn lint\" \"yarn run test\"",
+    "lint": "eslint {src,test}/**/*.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "fozzie"
+  ]
 }

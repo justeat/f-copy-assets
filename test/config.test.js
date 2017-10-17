@@ -1,4 +1,5 @@
-const config = require('../config');
+const config = require('../src/config');
+
 
 describe('config', () => {
 
@@ -19,7 +20,6 @@ describe('config', () => {
     });
 
     it('can be updated', () => {
-
         // Arrange
         const newOpts = {
             verbose: true,
@@ -33,7 +33,6 @@ describe('config', () => {
         expect(config.dest).toBe('Assets');
         expect(config.verbose).toBe(true);
         expect(config.logger).toBe(console.log); // not updated or deleted
-
     });
 
 });

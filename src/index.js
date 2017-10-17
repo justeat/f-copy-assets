@@ -1,7 +1,7 @@
 const glob = require('glob');
 const {
-    getPkg,
-    addManifestToPkg,
+    getPackage,
+    addManifestToPackage,
     copyOnePackage
 } = require('./lib');
 const config = require('./config');
@@ -23,8 +23,8 @@ const copyAssets = options => new Promise((resolve, reject) => {
         if (err) reject(err);
 
         const promises = dirs.map(dir =>
-            getPkg(dir)
-                .then(addManifestToPkg)
+            getPackage(dir)
+                .then(addManifestToPackage)
                 .then(copyOnePackage)
         );
 

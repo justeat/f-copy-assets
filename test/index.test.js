@@ -1,9 +1,9 @@
-const copyAssets = require('../index');
+const copyAssets = require('../src/index');
+
 
 describe('copyAssets', () => {
 
     it('rejects if bad glob provided', () => {
-
         // Arrange
         const inputGlob = null;
         const inputDistDir = 'dist/';
@@ -13,7 +13,6 @@ describe('copyAssets', () => {
 
         // Assert
         expect(promise).rejects.toBeDefined();
-
     });
 
 });

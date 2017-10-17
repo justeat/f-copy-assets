@@ -7,7 +7,7 @@ const config = require('./config');
 /*
  * Validates that the filepath contains a package and returns an object holding the package name
  */
-const getPkg = filepath => new Promise((resolve, reject) => {
+const getPackage = filepath => new Promise((resolve, reject) => {
     const split = filepath.split('/'); // e.g. [...'@justeat', '', 'fozzie', '']
     const name = split[split.length - 2];
     if (!name || name.charAt(0) === '@') {
@@ -46,7 +46,7 @@ const getAssetsManifest = pkgJsonData => new Promise((resolve, reject) => {
 /*
  * Adds the assets manifest from package.json to the package object
  */
-const addManifestToPkg = pkg => new Promise(resolve => {
+const addManifestToPackage = pkg => new Promise(resolve => {
     if (pkg.assets) {
         resolve(pkg);
     }
@@ -109,6 +109,7 @@ const copyOnePackage = pkg => new Promise((resolve, reject) => {
 
     const assetDetails = file => {
         const relativePath = path.relative(assetsRoot, file); // e.g. img/sprite.svg
+
         return {
             absolutePath: file, // e.g. node_modules/@justeat/fozzie/dist/img/sprite.svg
             relativePath,
@@ -116,7 +117,7 @@ const copyOnePackage = pkg => new Promise((resolve, reject) => {
         };
     };
 
-    glob(assetsGlob, (err, files) => {
+    glob(assetsGlob, { nodir: true }, (err, files) => {
         if (err) reject(err);
 
         const makePromise = asset => makeDirectories(asset).then(copyFile); // Using this due to the absence of promise.map
@@ -134,10 +135,10 @@ const copyOnePackage = pkg => new Promise((resolve, reject) => {
 });
 
 module.exports = {
-    getPkg,
+    getPackage,
     getPackageJson,
     getAssetsManifest,
-    addManifestToPkg,
+    addManifestToPackage,
     makeDirectories,
     copyFile,
     copyOnePackage
