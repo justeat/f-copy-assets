@@ -76,9 +76,13 @@ const copyFile = asset => new Promise((resolve, reject) => {
     const input = fs.createReadStream(asset.absolutePath);
     const output = fs.createWriteStream(asset.dest);
 
+    let isFinished = false;
     const finish = err => {
-        if (err) reject(err);
-        resolve();
+        if (!isFinished) {
+            isFinished = true;
+            if (err) reject(err);
+            resolve();
+        }
     };
 
     if (config.verbose) {
