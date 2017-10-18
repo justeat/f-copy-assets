@@ -1,4 +1,6 @@
 ﻿# f-copy-assets
+ 
+[![npm version](https://badge.fury.io/js/%40justeat%2Ff-copy-assets.svg)](https://badge.fury.io/js/%40justeat%2Ff-copy-assets)
 
 A module that copies assets from node_modules to a specified destination directory, using promises
 
