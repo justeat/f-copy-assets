@@ -1,4 +1,4 @@
-const copyAssets = require('../src/index');
+import copyAssets from '../src/index';
 
 
 describe('copyAssets', () => {
