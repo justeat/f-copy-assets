@@ -1,10 +1,10 @@
-const glob = require('glob');
-const {
+import glob from 'glob';
+import {
     getPackage,
     addManifestToPackage,
     copyOnePackage
-} = require('./lib');
-const config = require('./config');
+} from './lib';
+import config from './config';
 
 /*
  * The main export - copies all assets found in pkgSrcGlob to the dest

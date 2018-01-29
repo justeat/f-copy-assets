@@ -1,10 +1,10 @@
 {
   "name": "@justeat/f-copy-assets",
   "description": "Copies assets from node modules to a specified destination directory",
-  "version": "0.4.0",
-  "main": "src/index.js",
+  "version": "0.5.0",
+  "main": "dist/index.js",
   "files": [
-    "src"
+    "dist"
   ],
   "homepage": "https://github.com/justeat/f-copy-assets",
   "contributors": [
@@ -27,18 +27,25 @@
   },
   "devDependencies": {
     "@justeat/eslint-config-fozzie": "^1.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-minify": "^0.2.0",
+    "babel-preset-env": "^1.6.1",
     "concurrently": "^3.5.0",
     "eslint": "^4.9.0",
     "eslint-plugin-import": "^2.7.0",
     "jest": "^21.2.1"
   },
   "scripts": {
-    "prepare": "concurrently -n \"lint,test\" -c \"blue,green\" --kill-others-on-fail \"yarn lint\" \"yarn run test\"",
+    "prepare": "concurrently -n \"lint,compile,test\" -c \"blue,yellow,green\" \"yarn lint\" \"yarn compile\" \"yarn test\" --kill-others-on-fail",
     "lint": "eslint {src,test}/**/*.js",
+    "compile": "babel -d dist src",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "keywords": [
     "fozzie"
+  ],
+  "browserslist": [
+    "node 4.0.0"
   ]
 }

@@ -1,8 +1,8 @@
-const glob = require('glob');
-const fs = require('fs');
-const path = require('path');
-const mkdirp = require('mkdirp');
-const config = require('./config');
+import glob from 'glob';
+import fs from 'fs';
+import path from 'path';
+import mkdirp from 'mkdirp';
+import config from './config';
 
 /*
  * Validates that the filepath contains a package and returns an object holding the package name
@@ -134,7 +134,7 @@ const copyOnePackage = pkg => new Promise((resolve, reject) => {
 
 });
 
-module.exports = {
+export {
     getPackage,
     getPackageJson,
     getAssetsManifest,

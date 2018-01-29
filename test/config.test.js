@@ -1,4 +1,4 @@
-const config = require('../src/config');
+import config from '../src/config';
 
 
 describe('config', () => {

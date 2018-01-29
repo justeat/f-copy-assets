@@ -1,11 +1,11 @@
-const {
+import {
     getPackage,
     getPackageJson,
     getAssetsManifest,
     makeDirectories,
     copyFile,
     copyOnePackage
-} = require('../src/lib');
+} from '../src/lib';
 
 
 describe('getPackage', () => {
