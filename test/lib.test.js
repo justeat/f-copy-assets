@@ -4,7 +4,7 @@ import {
     getAssetsManifest,
     makeDirectories,
     copyFile,
-    copyOnePackage
+    copyPackages
 } from '../src/lib';
 
 
@@ -144,7 +144,7 @@ describe('copyFile', () => {
 
 });
 
-describe('copyOnePackage', () => {
+describe('copyPackages', () => {
 
     it('resolves if package has no assets', () => {
         // Arrange
@@ -155,7 +155,7 @@ describe('copyOnePackage', () => {
         };
 
         // Act
-        const promise = copyOnePackage(input);
+        const promise = copyPackages(input);
 
         // Assert
         expect(promise).resolves.toBeDefined();

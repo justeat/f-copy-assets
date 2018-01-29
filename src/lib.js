@@ -50,6 +50,7 @@ const addManifestToPackage = pkg => new Promise(resolve => {
     if (pkg.assets) {
         resolve(pkg);
     }
+
     getPackageJson(pkg)
         .then(getAssetsManifest)
         .then(assets => {
@@ -100,36 +101,48 @@ const copyFile = asset => new Promise((resolve, reject) => {
 /*
  * Copies a single package's assets to the dest
  */
-const copyOnePackage = pkg => new Promise((resolve, reject) => {
+const copyPackages = pkg => new Promise((resolve, reject) => {
 
-    if (!pkg.assets) resolve(`No assets found for package ${pkg.name}`);
+    if (!pkg.assets) {
+        return resolve(`No assets found for package ${pkg.name}`);
+    }
 
-    const assetsRoot = path.join(pkg.filepath, pkg.assets.root); // e.g. node_modules/@justeat/fozzie/dist
-    const assetsGlob = path.join(assetsRoot, pkg.assets.glob); // e.g. node_modules/@justeat/fozzie/dist/img/**/*.svg
+    if (!Array.isArray(pkg.assets)) {
+        pkg.assets = [pkg.assets];
+    }
 
-    const assetDetails = file => {
-        const relativePath = path.relative(assetsRoot, file); // e.g. img/sprite.svg
+    return pkg.assets.forEach(pkgAsset => {
 
-        return {
-            absolutePath: file, // e.g. node_modules/@justeat/fozzie/dist/img/sprite.svg
-            relativePath,
-            dest: path.join(config.dest, relativePath) // e.g. Assets/img/sprite.svg
+        const assetsRoot = path.join(pkg.filepath, pkgAsset.root); // e.g. node_modules/@justeat/fozzie/dist
+        const assetsGlob = path.join(assetsRoot, pkgAsset.glob); // e.g. node_modules/@justeat/fozzie/dist/img/**/*.svg
+
+        const assetDetails = file => {
+            const relativePath = path.relative(assetsRoot, file); // e.g. img/sprite.svg
+            const dest = pkgAsset.dest || config.dest;
+
+            return {
+                absolutePath: file, // e.g. node_modules/@justeat/fozzie/dist/img/sprite.svg
+                relativePath,
+                dest: path.join(dest, relativePath) // e.g. Assets/img/sprite.svg
+            };
         };
-    };
 
-    glob(assetsGlob, { nodir: true }, (err, files) => {
-        if (err) reject(err);
+        glob(assetsGlob, { nodir: true }, (err, files) => {
+            if (err) reject(err);
 
-        const makePromise = asset => makeDirectories(asset).then(copyFile); // Using this due to the absence of promise.map
+            const makePromise = asset => makeDirectories(asset)
+                .then(copyFile); // Using this due to the absence of promise.map
 
-        const promises = files
-            .map(assetDetails)
-            .map(makePromise);
+            const promises = files
+                .map(assetDetails)
+                .map(makePromise);
 
-        Promise
-            .all(promises)
-            .then(resolve)
-            .catch(reject);
+            return Promise
+                .all(promises)
+                .then(resolve)
+                .catch(reject);
+        });
+
     });
 
 });
@@ -141,5 +154,5 @@ export {
     addManifestToPackage,
     makeDirectories,
     copyFile,
-    copyOnePackage
+    copyPackages
 };

@@ -2,7 +2,7 @@ import glob from 'glob';
 import {
     getPackage,
     addManifestToPackage,
-    copyOnePackage
+    copyPackages
 } from './lib';
 import config from './config';
 
@@ -25,7 +25,7 @@ const copyAssets = options => new Promise((resolve, reject) => {
         const promises = dirs.map(dir =>
             getPackage(dir)
                 .then(addManifestToPackage)
-                .then(copyOnePackage)
+                .then(copyPackages)
         );
 
         Promise

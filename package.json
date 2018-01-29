@@ -1,7 +1,7 @@
 {
   "name": "@justeat/f-copy-assets",
   "description": "Copies assets from node modules to a specified destination directory",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -28,7 +28,6 @@
   "devDependencies": {
     "@justeat/eslint-config-fozzie": "^1.2.0",
     "babel-cli": "^6.26.0",
-    "babel-minify": "^0.2.0",
     "babel-preset-env": "^1.6.1",
     "concurrently": "^3.5.0",
     "eslint": "^4.9.0",
