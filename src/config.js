@@ -1,4 +1,4 @@
-/*
+/**
  * Default options
  */
 let config = {

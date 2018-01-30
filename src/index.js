@@ -6,8 +6,11 @@ import {
 } from './lib';
 import config from './config';
 
-/*
+
+/**
  * The main export - copies all assets found in pkgSrcGlob to the dest
+ *
+ * @param {object} options
  */
 const copyAssets = options => new Promise((resolve, reject) => {
 
