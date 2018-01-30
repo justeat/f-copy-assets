@@ -17,6 +17,7 @@ v0.6.0
 ## Changed
 - `assets` property in `package.json` can now be specified as an array of assets.
 - Renamed `copyOnePackage` function to `copyPackages`.
+- Ignoring console lint warnings.
 
 ## Removed
 - Removed babel `babel-minify` package.
