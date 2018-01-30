@@ -55,12 +55,10 @@ There are a few different ways this can be configured.
 
 ```json
 {
-  ...
   "assets": {
     "root": "dist/",
     "glob": "img/**/*.{png,svg}"
   }
-  ...
 }
 ```
 
@@ -70,13 +68,11 @@ All files matching the glob `"dist/img/**/*.{png,svg}"` will be copied into an `
 
 ```json
 {
-  ...
   "assets": {
     "root": "dist/",
     "glob": "img/**/*.{png,svg}",
     "dest": "./"
   }
-  ...
 }
 ```
 
@@ -86,7 +82,6 @@ All files matching the glob `"dist/img/**/*.{png,svg}"` will be copied into an `
 
 ```json
 {
-  ...
   "assets": [
     {
       "root": "dist/",
@@ -98,7 +93,6 @@ All files matching the glob `"dist/img/**/*.{png,svg}"` will be copied into an `
       "dest": "./"
     }
   ]
-  ...
 }
 ```
 
