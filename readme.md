@@ -116,4 +116,4 @@ Specify a glob pattern to search for assets which should be copied.
 
 ### `dest`
 
-Specify the directory that the matched assets should be copied into. This option is not required — it will default to [the `dist` option within the module options](#module-ptions).
+Specify the directory that the matched assets should be copied into. This option is not required — it will default to [the `dist` option within the module options](#module-options).
