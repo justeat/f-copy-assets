@@ -1,6 +1,8 @@
 ﻿# f-copy-assets :bear:
 
 [![npm version](https://badge.fury.io/js/%40justeat%2Ff-copy-assets.svg)](https://badge.fury.io/js/%40justeat%2Ff-copy-assets)
+[![Build Status](https://travis-ci.org/justeat/f-copy-assets.svg)](https://travis-ci.org/justeat/f-copy-assets)
+[![Coverage Status](https://coveralls.io/repos/github/justeat/f-copy-assets/badge.svg)](https://coveralls.io/github/justeat/f-copy-assets)
 
 A module that copies assets from node_modules to a specified destination directory, using promises
 
