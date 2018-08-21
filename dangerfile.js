@@ -7,7 +7,7 @@ const isTrivial = bodyAndTitle.includes('#trivial');
 if (!isTrivial) {
     // Fail if there isn’t a CHANGELOG entry – should update for every PR
     if (!danger.git.modified_files.includes('CHANGELOG.md')) {
-        const changelogLink = 'https://github.com/justeat/gulp-build-fozzie/blob/master/CHANGELOG.md';
+        const changelogLink = 'https://github.com/justeat/f-copy-assets/blob/master/CHANGELOG.md';
         fail(`:memo: Please include a CHANGELOG entry. You can find the current version at <a href="${changelogLink}">CHANGELOG.md</a>`);
     }
 
