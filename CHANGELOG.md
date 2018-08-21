@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 v1.1.0
 ------------------------------
-*August 20, 2018*
+*August 21, 2018*
 
 ## Changed
 - Added Travis config.
